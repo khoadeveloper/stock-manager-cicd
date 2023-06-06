@@ -19,6 +19,7 @@ pipeline {
                     remote.passphrase = "${SSH_CREDS_PSW}"
                     remote.user = "${SSH_CREDS_USR}"
 
+                    echo "${SSH_CREDS}"
                     sshCommand remote: remote, command: "ls -lrt"
                 }
             }
