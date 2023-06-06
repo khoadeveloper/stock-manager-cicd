@@ -9,12 +9,20 @@ remote.identity = "ubuntu@jenkins"
 pipeline {
     agent any
 
+    environment {
+        SSH_CREDS = credentials('ssh stock-manager-dev')
+    }
+
+
     stages {
         stage("Prepage image") {
             steps {
-                script {
-                    sshCommand remote: remote, command: "ls -lrt"
-                }
+                //script {
+                //    sshCommand remote: remote, command: "ls -lrt"
+                //}
+                echo "$SSH_CREDS_USR"
+                echo "$SSH_CREDS"
+                echo "$SSH_CREDS_PSW"
             }
         }
     }
