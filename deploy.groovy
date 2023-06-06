@@ -14,14 +14,19 @@ pipeline {
     stages {
         stage("Prepage image") {
             steps {
-                script {
+                sshagent(credentials: ['ssh stock-manager-dev']) {
+                    sh '''
+                          ssh ubuntu@139.99.72.34 'ls -lrt'
+                      '''
+                }
+                /*script {
                     remote.identity = "${SSH_CREDS}"
                     remote.passphrase = "${SSH_CREDS_PSW}"
                     remote.user = "${SSH_CREDS_USR}"
 
                     echo "${SSH_CREDS}"
                     sshCommand remote: remote, command: "ls -lrt"
-                }
+                }*/
             }
         }
     }
