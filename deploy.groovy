@@ -15,9 +15,9 @@ pipeline {
         stage("Prepage image") {
             steps {
                 script {
-                    remote.identity = $SSH_CREDS
-                    remote.passphrase = $SSH_CREDS_PSW
-                    remote.user = $SSH_CREDS_USR
+                    remote.identity = "${SSH_CREDS}"
+                    remote.passphrase = "${SSH_CREDS_PSW}"
+                    remote.user = "${SSH_CREDS_USR}"
 
                     sshCommand remote: remote, command: "ls -lrt"
                 }
