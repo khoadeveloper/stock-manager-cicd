@@ -16,7 +16,7 @@ pipeline {
             steps {
                 sshagent(credentials: ['ssh stock-manager-dev']) {
                     sh '''
-                          ssh ubuntu@139.99.72.34 'ls -lrt'
+                          ssh StrictHostKeyChecking=no ubuntu@139.99.72.34 'ls -lrt'
                       '''
                 }
                 /*script {
