@@ -4,7 +4,9 @@ pipeline {
         stage("Trigger") {
             steps {
                 echo "${ref}"
-                echo "${changes}"
+                echo "${added}"
+                echo "${modified}"
+                echo "${removed}"
             }
         }
     }
