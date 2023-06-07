@@ -1,3 +1,5 @@
+@Library("shared-library") _
+
 properties([
         parameters([
                 choice(choices: [
@@ -50,11 +52,7 @@ properties([
                                         sandbox: false,
                                         classpath: [],
                                         script: '''
-                                            if (service == 'eureka') {
-                                                return ['8000:8000']
-                                            } else {
-                                                return ['1']
-                                            }
+                                            return common.getAppPort(service)
                                         ''']
                         ]
                 ]
