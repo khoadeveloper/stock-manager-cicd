@@ -1,9 +1,11 @@
 import groovy.json.JsonSlurper
 
 def fetchVersion(service) {
-    def response = httpRequest 'http://139.99.72.55:5000/v2/khuyenstore/' + service + '/tags/list'
+    //def response = httpRequest 'http://139.99.72.55:5000/v2/khuyenstore/' + service + '/tags/list'
 
-    return new JsonSlurper().parseText(response.content).tags
+    //return new JsonSlurper().parseText(response.content).tags
+
+    return ["1", "2"]
 }
 
 properties([
