@@ -52,6 +52,8 @@ properties([
                                         sandbox: false,
                                         classpath: [],
                                         script: '''
+                                            @Library("shared-library") _
+                                            
                                             return common.getAppPort(service)
                                         ''']
                         ]
