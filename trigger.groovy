@@ -27,10 +27,10 @@ pipeline {
                     def refParts = ref.split("/");
 
                     String branch = refParts[refParts.size() - 1]
-                    for (final def service in services) {
-                        println(service)
+                    for (final def ser in services) {
+                        println(ser)
                         build job: "stock-manager/${branch}",
-                                parameters: [string(name: 'service', value: service)]
+                                parameters: [string(name: 'service', value: "${ser}")]
                     }
                 }
             }
