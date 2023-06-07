@@ -13,7 +13,7 @@ pipeline {
                 script {
                     def slurper = new JsonSlurper();
 
-                    def addedArr = slurper.parse(added)
+                    def addedArr = slurper.parseText(added)
                     println(addedArr.flatten())
                 }
             }
