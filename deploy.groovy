@@ -52,7 +52,7 @@ properties([
                                         sandbox: false,
                                         classpath: [],
                                         script: '''
-                                            @Library("shared-library") _
+                                            library 'shared-library@master'
                                             
                                             return common.getAppPort(service)
                                         ''']
