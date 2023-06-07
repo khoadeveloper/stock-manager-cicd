@@ -1,14 +1,28 @@
 properties([
         parameters([
+                choice(choices: [
+                        "admin",
+                        "api",
+                        "common",
+                        "config",
+                        "eureka",
+                        "flickr",
+                        "gateway",
+                        "kiotviet",
+                        "lazada",
+                        "mailer",
+                        "scheduler",
+                        "sendo",
+                        "tiki"
+                ], description: "Which service to deploy?", name: "service"),
                 [
                         $class: 'CascadeChoiceParameter',
                         choiceType: 'PT_SINGLE_SELECT',
-                        description: 'Active Choices Reactive parameter',
-                        filterLength: 1,
-                        filterable: true,
-                        name: 'choice2',
+                        description: 'Version to deploy?',
+                        filterable: false,
+                        name: 'version',
                         randomName: 'choice-parameter-7601237141171',
-                        referencedParameters: 'choice1',
+                        referencedParameters: 'service',
                         script: [
                                 $class: 'GroovyScript',
                                 fallbackScript: [
@@ -19,7 +33,7 @@ properties([
                                 script: [
                                         classpath: [],
                                         sandbox: false,
-                                        script: 'if(choice1.equals("aaa")){return [\'a\', \'b\']} else {return [\'aaaaaa\',\'fffffff\']}'
+                                        script: "if (service == 'eureka') {return ['1', '2']} else {return ['?', ':']}"
                                 ]
                         ]
                 ]
