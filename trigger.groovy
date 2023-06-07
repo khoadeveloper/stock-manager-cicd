@@ -15,9 +15,9 @@ pipeline {
                 script {
                     def slurper = new JsonSlurper();
 
-                    def addedArr = slurper.parseText(added)
-                    def modifiedArr = slurper.parseText(modified)
-                    def removedArr = slurper.parseText(removed)
+                    def addedArr = slurper.parseText(added).flatten()
+                    def modifiedArr = slurper.parseText(modified).flatten()
+                    def removedArr = slurper.parseText(removed).flatten()
 
                     def changes = addedArr + modifiedArr + removedArr;
                     for (final def item in changes) {
