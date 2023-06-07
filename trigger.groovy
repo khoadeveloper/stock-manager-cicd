@@ -30,9 +30,9 @@ pipeline {
                     }
 
                     def refParts = ref.split("/");
-                    def branch = refParts.get(refParts.size() - 1);
+                    //def branch = refParts.get(refParts.size() - 1);
 
-                    println(branch)
+                    println(refParts)
                     println(services)
                 }
             }
