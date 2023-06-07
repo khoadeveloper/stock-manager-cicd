@@ -1,3 +1,17 @@
+def fetchVersion(service) {
+    RESTClient client = new RESTClient('http://139.99.72.55:5000/v2/khuyenstore/' + service + '/tags/list')
+    def response
+    try {
+        response = client.get()
+        println(response.json)
+
+    } catch (RESTClientException e) {
+        println("error")
+    }
+
+    return ['1', '2']
+}
+
 properties([
         parameters([
                 choice(choices: [
@@ -29,8 +43,8 @@ properties([
                                         sandbox: true,
                                         classpath: [],
                                         script: '''
-                            return ['1', '2']
-                        ''']
+                                            fetchVersion(service)
+                                        ''']
                         ]
                 ]
         ])
