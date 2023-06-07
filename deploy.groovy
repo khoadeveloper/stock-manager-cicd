@@ -35,6 +35,28 @@ properties([
                                             return new JsonSlurper().parseText(response.getText()).tags
                                         ''']
                         ]
+                ],
+                [
+                        $class: 'CascadeChoiceParameter',
+                        choiceType: 'ET_TEXT_BOX',
+                        description: 'Port to expose?',
+                        filterable: false,
+                        name: 'port',
+                        randomName: 'input-port',
+                        referencedParameters: 'service',
+                        script: [
+                                $class: 'GroovyScript',
+                                script: [
+                                        sandbox: false,
+                                        classpath: [],
+                                        script: '''
+                                            if (service == 'eureka') {
+                                                return '8000:8000'
+                                            } else {
+                                                return '1'
+                                            }
+                                        ''']
+                        ]
                 ]
         ])
 ])
