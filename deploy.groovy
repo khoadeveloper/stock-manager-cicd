@@ -37,11 +37,12 @@ properties([
                         ]
                 ],
                 [
-                        $class: 'DynamicReferenceParameter',
-                        choiceType: 'ET_TEXT_BOX',
-                        description: 'Port to expose?',
+                        $class: 'CascadeChoiceParameter',
+                        choiceType: 'PT_SINGLE_SELECT',
+                        description: 'Port to deploy?',
+                        filterable: false,
                         name: 'port',
-                        randomName: 'input-port-99',
+                        randomName: 'choice-parameter-port',
                         referencedParameters: 'service',
                         script: [
                                 $class: 'GroovyScript',
@@ -50,9 +51,9 @@ properties([
                                         classpath: [],
                                         script: '''
                                             if (service == 'eureka') {
-                                                return '8000:8000'
+                                                return ['8000:8000']
                                             } else {
-                                                return '1'
+                                                return ['1']
                                             }
                                         ''']
                         ]
