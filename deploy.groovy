@@ -29,7 +29,7 @@ properties([
 pipeline {
     agent any
 
-    parameters {
+    /*parameters {
         choice(choices: [
                 "admin",
                 "api",
@@ -45,11 +45,12 @@ pipeline {
                 "sendo",
                 "tiki"
         ], description: "Which service to deploy?", name: "service")
-    }
+    }*/
 
     stages {
         stage("Pull image") {
             steps {
+                echo "${params.choice2}"
                 sshagent(credentials: ['ssh stock-manager-dev']) {
                     sh '''
                           ssh -o StrictHostKeyChecking=no ubuntu@139.99.72.34 "
