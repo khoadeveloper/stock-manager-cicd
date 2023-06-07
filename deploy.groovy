@@ -25,9 +25,12 @@ properties([
                         referencedParameters: 'service',
                         script: [
                                 $class: 'GroovyScript',
-                                script: """
-                                    return ['1', '2']
-                                """
+                                script: [
+                                        sandbox: true,
+                                        classpath: [],
+                                        script: '''
+                            return ['1', '2']
+                        ''']
                         ]
                 ]
         ])
