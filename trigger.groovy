@@ -24,14 +24,19 @@ pipeline {
                         }
                     }
 
-                    def refParts = ref.split("/");
+                    def refParts = ref.split("/")
+                    env.branch = refParts[refParts.size() - 1]
+                    env.services = services
 
-                    String branch = refParts[refParts.size() - 1]
                     for (final def ser in services) {
                         println(ser)
-                        build job: "stock-manager/${branch}",
-                                parameters: [string(name: 'service', value: "${ser}")]
+
                     }
+                }
+
+                services.each{service ->
+                    build job: "stock-manager/${branch}",
+                            parameters: [string(name: 'service', value: "${service}")]
                 }
             }
         }
