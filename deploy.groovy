@@ -64,13 +64,23 @@ pipeline {
     agent any
 
     stages {
-        stage("Cleaning environment") {
+        stage("Stopping container") {
             steps {
                 sshagent(credentials: ['ssh stock-manager-dev']) {
                     sh '''
                        ssh -o StrictHostKeyChecking=no ubuntu@139.99.72.34 "
-                        docker ps | grep  -E 'khuyenstore/${service}'  |  awk '{print \\\$1}' | xargs docker stop;
-                        docker rmi -f $(docker images -q khuyenstore/${service})
+                        docker ps | grep  -E 'khuyenstore/${service}'  |  awk '{print \\\$1}' | xargs docker stop
+                       "
+                    '''
+                }
+            }
+        }
+        stage("Deleting images") {
+            steps {
+                sshagent(credentials: ['ssh stock-manager-dev']) {
+                    sh '''
+                       ssh -o StrictHostKeyChecking=no ubuntu@139.99.72.34 "
+                        docker images | grep -E 'khuyenstore/${service}' | awk '{print \\\$3}' | xargs docker rmi -f
                        "
                     '''
                 }
