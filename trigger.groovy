@@ -20,12 +20,12 @@ pipeline {
                     def removedArr = slurper.parseText(removed).flatten()
 
                     def changes = addedArr + modifiedArr + removedArr;
+                    println(changes)
                     for (final def item in changes) {
                         println(item)
                         if (item.contains("/")) {
                             List<String> service = item.split("/")
-                            println(service)
-                            if (!services.contains(service)) {
+                            if (!services.contains(service[0])) {
                                 services.add(service)
                             }
                         }
