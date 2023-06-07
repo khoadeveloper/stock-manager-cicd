@@ -21,6 +21,7 @@ pipeline {
 
                     def changes = addedArr + modifiedArr + removedArr;
                     for (final def item in changes) {
+                        println(item)
                         if (item.contains("/")) {
                             def service = item.split("/").get(0);
                             println(service)
