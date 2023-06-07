@@ -33,7 +33,7 @@ properties([
                                 script: [
                                         classpath: [],
                                         sandbox: false,
-                                        script: 'return [\'1\', \'2\']'
+                                        script: 'return ["1", "2"]'
                                 ]
                         ]
                 ]
