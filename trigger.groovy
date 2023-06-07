@@ -17,8 +17,8 @@ pipeline {
                     def changes = addedArr + modifiedArr + removedArr;
                     for (final def item in changes) {
                         if (item.contains("/")) {
-                            List<String> service = item.split("/")
-                            if (!services.contains(service[0])) {
+                            String service = item.split("/")[0]
+                            if (!services.contains(service)) {
                                 services.add(service)
                             }
                         }
