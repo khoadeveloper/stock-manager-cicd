@@ -41,7 +41,7 @@ properties([
                         choiceType: 'ET_TEXT_BOX',
                         description: 'Port to expose?',
                         name: 'port',
-                        randomName: 'input-port',
+                        randomName: 'input-port-99',
                         referencedParameters: 'service',
                         script: [
                                 $class: 'GroovyScript',
@@ -101,6 +101,8 @@ pipeline {
         }
         stage("Deploying") {
             steps {
+                echo "${service}"
+                echo "${version}"
                 echo "${port}"
                 sshagent(credentials: ['ssh stock-manager-dev']) {
                     sh '''
