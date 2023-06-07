@@ -5,7 +5,7 @@ def fetchVersion(service) {
 
     //return new JsonSlurper().parseText(response.content).tags
 
-    return ["1", "2"]
+    return ['1', '2']
 }
 
 properties([
