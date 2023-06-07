@@ -19,7 +19,7 @@ pipeline {
                 "sendo",
                 "tiki"
         ], description: "Which service to deploy?", name: "service")
-        activeChoicesReactive(
+        activeChoiceReactiveParam(
                 name: "version",
                 choiceType: 'PT_SINGLE_SELECT',
                 description: "Version to deploy",
