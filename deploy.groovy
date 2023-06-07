@@ -1,7 +1,4 @@
-def remote = [:]
-remote.name = '139.99.72.34'
-remote.host = '139.99.72.34'
-remote.allowAnyHosts = true
+versions = fetchVersions(service)
 
 pipeline {
     agent any
@@ -22,6 +19,28 @@ pipeline {
                 "sendo",
                 "tiki"
         ], description: "Which service to deploy?", name: "service")
+        activeChoicesReactive(
+                name: "version",
+                choiceType: 'PT_SINGLE_SELECT',
+                description: "Version to deploy",
+                filterable: false,
+                script: [
+                        $class: 'GroovyScript',
+                        fallbackScript: [
+                                classpath: [],
+                                sandbox: false,
+                                script:
+                                        'return[\'Could not get Env\']'
+                        ],
+                        script: [
+                                classpath: [],
+                                sandbox: false,
+                                script:
+                                        'return["Dev","QA","Stage","Prod"]'
+                        ]
+                ]
+
+        )
     }
 
     stages {
