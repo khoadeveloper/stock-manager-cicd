@@ -42,31 +42,36 @@ properties([
 pipeline {
     agent any
 
-    /*parameters {
-        choice(choices: [
-                "admin",
-                "api",
-                "common",
-                "config",
-                "eureka",
-                "flickr",
-                "gateway",
-                "kiotviet",
-                "lazada",
-                "mailer",
-                "scheduler",
-                "sendo",
-                "tiki"
-        ], description: "Which service to deploy?", name: "service")
-    }*/
-
     stages {
-        stage("Pull image") {
+        stage("Cleaning environment") {
             steps {
                 sshagent(credentials: ['ssh stock-manager-dev']) {
                     sh '''
                           ssh -o StrictHostKeyChecking=no ubuntu@139.99.72.34 "
-                            docker pull 139.99.72.55:5000/khuyenstore/${service}:${version}
+                            docker stop $(docker ps -s | awk -v i="khuyenstore/${service}.*" '{if($2~i){print$1}}');
+                            docker rmi -f $(docker images -q khuyenstore/${service})
+                          "
+                      '''
+                }
+            }
+        }
+        stage("Pulling image") {
+            steps {
+                sshagent(credentials: ['ssh stock-manager-dev']) {
+                    sh '''
+                          ssh -o StrictHostKeyChecking=no ubuntu@139.99.72.34 "
+                            docker pull 139.99.72.55:5000/khuyenstore/${service}:${version};
+                          "
+                      '''
+                }
+            }
+        }
+        stage("Deploying") {
+            steps {
+                sshagent(credentials: ['ssh stock-manager-dev']) {
+                    sh '''
+                          ssh -o StrictHostKeyChecking=no ubuntu@139.99.72.34 "
+                            docker run -d 139.99.72.55:5000/khuyenstore/${service}:${version};
                           "
                       '''
                 }
