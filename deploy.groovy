@@ -39,7 +39,10 @@ properties([
                                         sandbox: true,
                                         classpath: [],
                                         script: '''
-                                            return fetchVersion(service)
+                                            import groovy.json.JsonSlurper
+                                            
+                                            def response = httpRequest 'http://139.99.72.55:5000/v2/khuyenstore/' + service + '/tags/list'
+                                            return new JsonSlurper().parseText(response.content).tags
                                         ''']
                         ]
                 ]
