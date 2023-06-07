@@ -1,13 +1,3 @@
-import groovy.json.JsonSlurper
-
-def fetchVersion(service) {
-    //def response = httpRequest 'http://139.99.72.55:5000/v2/khuyenstore/' + service + '/tags/list'
-
-    //return new JsonSlurper().parseText(response.content).tags
-
-    return ['1', '2']
-}
-
 properties([
         parameters([
                 choice(choices: [
@@ -73,24 +63,13 @@ pipeline {
     stages {
         stage("Pull image") {
             steps {
-                script {
-                    println(fetchVersion(service))
-                }
                 sshagent(credentials: ['ssh stock-manager-dev']) {
                     sh '''
                           ssh -o StrictHostKeyChecking=no ubuntu@139.99.72.34 "
-                            docker pull 139.99.72.55:5000/khuyenstore/${service}:0.0.1-SNAPSHOT
+                            docker pull 139.99.72.55:5000/khuyenstore/${service}:${version}
                           "
                       '''
                 }
-                /*script {
-                    remote.identity = "${SSH_CREDS}"
-                    remote.passphrase = "${SSH_CREDS_PSW}"
-                    remote.user = "${SSH_CREDS_USR}"
-
-                    echo "${SSH_CREDS}"
-                    sshCommand remote: remote, command: "ls -lrt"
-                }*/
             }
         }
     }
