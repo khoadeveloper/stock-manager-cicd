@@ -1,3 +1,4 @@
+sh "ls -rt"
 evaluate(new File("/vars/common.groovy"))
 
 properties([
