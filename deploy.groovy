@@ -19,29 +19,34 @@ pipeline {
                 "sendo",
                 "tiki"
         ], description: "Which service to deploy?", name: "service")
-        activeChoiceReactiveParam(
-                name: "version",
-                choiceType: 'PT_SINGLE_SELECT',
-                description: "Version to deploy",
-                filterable: false,
-                script: [
-                        $class: 'GroovyScript',
-                        fallbackScript: [
-                                classpath: [],
-                                sandbox: false,
-                                script:
-                                        'return[\'Could not get Env\']'
-                        ],
-                        script: [
-                                classpath: [],
-                                sandbox: false,
-                                script:
-                                        'return["Dev","QA","Stage","Prod"]'
-                        ]
-                ]
-
-        )
     }
+
+    properties([
+            parameters([
+                    [
+                            $class: 'CascadeChoiceParameter',
+                            name: "version",
+                            choiceType: 'PT_SINGLE_SELECT',
+                            description: "Version to deploy",
+                            filterable: false,
+                            script: [
+                                    $class: 'GroovyScript',
+                                    fallbackScript: [
+                                            classpath: [],
+                                            sandbox: false,
+                                            script:
+                                                    'return[\'Could not get Env\']'
+                                    ],
+                                    script: [
+                                            classpath: [],
+                                            sandbox: false,
+                                            script:
+                                                    'return["Dev","QA","Stage","Prod"]'
+                                    ]
+                            ]
+                    ]
+            ])
+    ])
 
     stages {
         stage("Pull image") {
