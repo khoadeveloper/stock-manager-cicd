@@ -102,7 +102,7 @@ pipeline {
                 sshagent(credentials: ['ssh stock-manager-dev']) {
                     sh '''
                           ssh -o StrictHostKeyChecking=no ubuntu@139.99.72.34 "
-                            docker run -d 139.99.72.55:5000/khuyenstore/${service}:${version};
+                            docker run -d -p${port} 139.99.72.55:5000/khuyenstore/${service}:${version};
                           "
                       '''
                 }
