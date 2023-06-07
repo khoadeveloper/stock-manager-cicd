@@ -1,3 +1,5 @@
+import groovyx.net.http.RESTClient
+
 def fetchVersion(service) {
     RESTClient client = new RESTClient('http://139.99.72.55:5000/v2/khuyenstore/' + service + '/tags/list')
     def response
