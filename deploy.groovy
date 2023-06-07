@@ -21,7 +21,7 @@ pipeline {
         ], description: "Which service to deploy?", name: "service")
     }
 
-    properties([
+    options([
             parameters([
                     [
                             $class: 'CascadeChoiceParameter',
