@@ -67,7 +67,9 @@ pipeline {
     stages {
         stage("Pull image") {
             steps {
-                echo "${params.choice2}"
+                script {
+                    fetchVersion(${service})
+                }
                 sshagent(credentials: ['ssh stock-manager-dev']) {
                     sh '''
                           ssh -o StrictHostKeyChecking=no ubuntu@139.99.72.34 "
