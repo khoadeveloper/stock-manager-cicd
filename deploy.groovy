@@ -68,7 +68,7 @@ pipeline {
         stage("Pull image") {
             steps {
                 script {
-                    fetchVersion(${service})
+                    fetchVersion(service)
                 }
                 sshagent(credentials: ['ssh stock-manager-dev']) {
                     sh '''
