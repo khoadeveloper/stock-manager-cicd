@@ -67,12 +67,12 @@ pipeline {
         stage("Cleaning environment") {
             steps {
                 sshagent(credentials: ['ssh stock-manager-dev']) {
-                    sh '''
+                    sh """
                           ssh -o StrictHostKeyChecking=no ubuntu@139.99.72.34 "
-                            docker ps | grep  -E "khuyenstore/${service}"  |  awk "{print $1}" | xargs docker stop;
+                            docker ps | grep  -E "khuyenstore/${service}"  |  awk '{print \$1}' | xargs docker stop;
                             docker rmi -f \$(docker images -q khuyenstore/${service})
                           "
-                      '''
+                      """
                 }
             }
         }
