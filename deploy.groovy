@@ -33,7 +33,7 @@ properties([
                                 script: [
                                         classpath: [],
                                         sandbox: false,
-                                        script: "if (service == 'eureka') {return ['1', '2']} else {return ['?', ':']}"
+                                        script: 'return [\'1\', \'2\']'
                                 ]
                         ]
                 ]
