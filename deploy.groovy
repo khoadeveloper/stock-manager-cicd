@@ -36,7 +36,7 @@ properties([
                         script: [
                                 $class: 'GroovyScript',
                                 script: [
-                                        sandbox: true,
+                                        sandbox: false,
                                         classpath: [],
                                         script: '''
                                             import groovy.json.JsonSlurper
