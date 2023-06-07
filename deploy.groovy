@@ -99,6 +99,7 @@ pipeline {
         }
         stage("Deploying") {
             steps {
+                echo "${port}"
                 sshagent(credentials: ['ssh stock-manager-dev']) {
                     sh '''
                           ssh -o StrictHostKeyChecking=no ubuntu@139.99.72.34 "
