@@ -1,3 +1,5 @@
+import groovy.json.JsonSlurper
+
 pipeline {
     agent any
     stages {
@@ -9,7 +11,10 @@ pipeline {
                 echo "${removed}"
 
                 script {
-                    println(added.flatten())
+                    def slurper = new JsonSlurper();
+
+                    def addedArr = slurper.parse(added)
+                    println(addedArr.flatten())
                 }
             }
         }
