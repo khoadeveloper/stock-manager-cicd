@@ -50,9 +50,9 @@ properties([
                                         classpath: [],
                                         script: '''
                                             if (service == 'eureka') {
-                                                return '8000:8000'
+                                                return 8000:8000
                                             } else {
-                                                return '1'
+                                                return 1
                                             }
                                         ''']
                         ]
