@@ -1,8 +1,7 @@
 def fetchVersion(service) {
     def response = httpRequest 'http://139.99.72.55:5000/v2/khuyenstore/' + service + '/tags/list'
-    println(response.content)
 
-    return ['1', '2']
+    return response.content.tags
 }
 
 properties([
@@ -36,7 +35,7 @@ properties([
                                         sandbox: true,
                                         classpath: [],
                                         script: '''
-                                            fetchVersion(service)
+                                            return fetchVersion(service)
                                         ''']
                         ]
                 ]
@@ -68,7 +67,7 @@ pipeline {
         stage("Pull image") {
             steps {
                 script {
-                    fetchVersion(service)
+                    println(fetchVersion(service))
                 }
                 sshagent(credentials: ['ssh stock-manager-dev']) {
                     sh '''
