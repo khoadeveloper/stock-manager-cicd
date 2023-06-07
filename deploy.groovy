@@ -67,14 +67,12 @@ pipeline {
     stages {
         stage("Stopping container") {
             steps {
-                catchError {
-                    sshagent(credentials: ['ssh stock-manager-dev']) {
-                        sh '''
+                sshagent(credentials: ['ssh stock-manager-dev']) {
+                    sh '''
                        ssh -o StrictHostKeyChecking=no ubuntu@139.99.72.34 "
-                        docker ps | grep  -E 'khuyenstore/${service}'  |  awk '{print \\\$1}' | xargs docker stop
+                        docker ps | grep  -E 'khuyenstore/${service}'  |  awk '{print \\\$1}' | xargs -r docker stop
                        "
                     '''
-                    }
                 }
             }
         }
@@ -83,7 +81,7 @@ pipeline {
                 sshagent(credentials: ['ssh stock-manager-dev']) {
                     sh '''
                        ssh -o StrictHostKeyChecking=no ubuntu@139.99.72.34 "
-                        docker images | grep -E 'khuyenstore/${service}' | awk '{print \\\$3}' | xargs docker rmi -f
+                        docker images | grep -E 'khuyenstore/${service}' | awk '{print \\\$3}' | xargs -r docker rmi -f
                        "
                     '''
                 }
@@ -102,9 +100,6 @@ pipeline {
         }
         stage("Deploying") {
             steps {
-                echo "${service}"
-                echo "${version}"
-                echo "${port}"
                 sshagent(credentials: ['ssh stock-manager-dev']) {
                     sh '''
                           ssh -o StrictHostKeyChecking=no ubuntu@139.99.72.34 "
