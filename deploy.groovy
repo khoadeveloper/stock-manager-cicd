@@ -1,5 +1,3 @@
-versions = fetchVersions(service)
-
 properties([
         parameters([
                 [
