@@ -37,10 +37,9 @@ properties([
                         ]
                 ],
                 [
-                        $class: 'CascadeChoiceParameter',
+                        $class: 'DynamicReferenceParameter',
                         choiceType: 'ET_TEXT_BOX',
                         description: 'Port to expose?',
-                        filterable: false,
                         name: 'port',
                         randomName: 'input-port',
                         referencedParameters: 'service',
