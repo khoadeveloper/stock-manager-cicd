@@ -41,8 +41,8 @@ properties([
                                         script: '''
                                             import groovy.json.JsonSlurper
                                             
-                                            def response = httpRequest 'http://139.99.72.55:5000/v2/khuyenstore/' + service + '/tags/list'
-                                            return new JsonSlurper().parseText(response.content).tags
+                                            def response = new URL('http://139.99.72.55:5000/v2/khuyenstore/' + service + '/tags/list')
+                                            return new JsonSlurper().parseText(response.getText()).tags
                                         ''']
                         ]
                 ]
