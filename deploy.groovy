@@ -52,7 +52,7 @@ properties([
                                         sandbox: false,
                                         classpath: [],
                                         script: '''
-                                            library 'shared-library@master'
+                                            dsl.library 'shared-library@master'
                                             
                                             return common.getAppPort(service)
                                         ''']
