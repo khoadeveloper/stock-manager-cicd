@@ -23,6 +23,7 @@ pipeline {
                     for (final def item in changes) {
                         if (item.contains("/")) {
                             def service = item.split("/").get(0);
+                            println(service)
                             if (!services.contains(service)) {
                                 services.add(service)
                             }
