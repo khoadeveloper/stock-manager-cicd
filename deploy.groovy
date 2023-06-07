@@ -53,9 +53,10 @@ node {
                                             sandbox: false,
                                             classpath: [],
                                             script: '''
-                                            evaluate(new File("/vars/common.groovy"))
+                                            import groovy.json.JsonSlurper
                                             
-                                            return common.getAppPort(service)
+                                            def response = new URL('https://khoadeveloper.github.io/stock-manager-cicd/ports.json')
+                                            return [new JsonSlurper().parseText(response.getText())[service]]
                                         ''']
                             ]
                     ]
