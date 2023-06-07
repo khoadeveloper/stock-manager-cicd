@@ -28,6 +28,7 @@ pipeline {
 
                     String branch = refParts[refParts.size() - 1]
                     for (final def service in services) {
+                        println(service)
                         build job: "stock-manager/${branch}",
                                 parameters: [string(name: 'service', value: service)]
                     }
