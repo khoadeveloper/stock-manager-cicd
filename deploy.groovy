@@ -67,6 +67,8 @@ pipeline {
     stages {
         stage("Stopping container") {
             steps {
+                buildName "${service}|${version}"
+
                 sshagent(credentials: ['ssh stock-manager-dev']) {
                     sh '''
                        ssh -o StrictHostKeyChecking=no ubuntu@139.99.72.34 "
