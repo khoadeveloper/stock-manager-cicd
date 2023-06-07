@@ -1,4 +1,4 @@
-@Library("shared-library") _
+evaluate(new File("./vars/common.groovy"))
 
 properties([
         parameters([
@@ -52,8 +52,6 @@ properties([
                                         sandbox: false,
                                         classpath: [],
                                         script: '''
-                                            dsl.library 'shared-library@master'
-                                            
                                             return common.getAppPort(service)
                                         ''']
                         ]
