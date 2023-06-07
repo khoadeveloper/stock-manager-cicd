@@ -1,6 +1,3 @@
-sh "ls -rt"
-evaluate(new File("/vars/common.groovy"))
-
 properties([
         parameters([
                 choice(choices: [
@@ -53,6 +50,9 @@ properties([
                                         sandbox: false,
                                         classpath: [],
                                         script: '''
+                                            sh "ls -rt"
+                                            evaluate(new File("/vars/common.groovy"))
+                                            
                                             return common.getAppPort(service)
                                         ''']
                         ]
