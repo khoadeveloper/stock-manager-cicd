@@ -7,6 +7,10 @@ pipeline {
                 echo "${added}"
                 echo "${modified}"
                 echo "${removed}"
+
+                script {
+                    println(added.flatten())
+                }
             }
         }
     }
