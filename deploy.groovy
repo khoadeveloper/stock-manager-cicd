@@ -69,7 +69,7 @@ pipeline {
                 sshagent(credentials: ['ssh stock-manager-dev']) {
                     sh """
                           ssh -o StrictHostKeyChecking=no ubuntu@139.99.72.34 '
-                            docker ps | grep  -E "khuyenstore/${service}"  |  awk "{print \$1}"
+                            docker ps | grep  -E "khuyenstore/${service}"  |  awk '{print \$1}'
                           '
                       """
                 }
