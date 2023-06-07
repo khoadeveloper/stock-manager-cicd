@@ -1,4 +1,4 @@
-evaluate(new File("./vars/common.groovy"))
+evaluate(new File("/vars/common.groovy"))
 
 properties([
         parameters([
