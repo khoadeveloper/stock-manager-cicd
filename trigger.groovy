@@ -18,6 +18,9 @@ pipeline {
                     def addedArr = slurper.parseText(added).flatten()
                     def modifiedArr = slurper.parseText(modified).flatten()
                     def removedArr = slurper.parseText(removed).flatten()
+                    println(slurper.parseText(added))
+                    println(slurper.parseText(modified))
+
                     println(removedArr)
                     println(modifiedArr)
                     println(removedArr)
