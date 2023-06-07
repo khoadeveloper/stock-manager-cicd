@@ -26,7 +26,7 @@ pipeline {
 
                     def refParts = ref.split("/");
 
-                    println(refParts[0])
+                    println(refParts[refParts.size() - 1])
                     println(services)
                     //def branch = refParts.get(refParts.size() - 1);
                 }
