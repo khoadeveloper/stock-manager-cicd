@@ -1,7 +1,7 @@
 def fetchVersion(service) {
     def response = httpRequest 'http://139.99.72.55:5000/v2/khuyenstore/' + service + '/tags/list'
 
-    return response.content.tags
+    return new JsonSlurper().parseText(response.content).tags
 }
 
 properties([
