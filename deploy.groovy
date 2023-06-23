@@ -15,7 +15,7 @@ properties([
                         "scheduler",
                         "sendo",
                         "tiki",
-                        "facebook"
+                        "fb-automation"
                 ], description: "Which service to deploy?", name: "service"),
                 [
                         $class: 'CascadeChoiceParameter',
