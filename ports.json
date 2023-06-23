@@ -4,5 +4,6 @@
   "gateway": "8001",
   "admin": "8010",
   "kiotviet": "8011",
-  "flickr": "8012"
+  "flickr": "8012",
+  "facebook": "8013"
 }
