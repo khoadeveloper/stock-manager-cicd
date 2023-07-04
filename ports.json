@@ -5,5 +5,6 @@
   "admin": "8010",
   "kiotviet": "8011",
   "flickr": "8012",
-  "fb-automation": "8013"
+  "fb-automation": "8013",
+  "mailer": "8014"
 }
